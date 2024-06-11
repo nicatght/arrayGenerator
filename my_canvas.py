@@ -6,12 +6,14 @@ class my_canvas(tk.Canvas):
         # reconstruct root size
         size = str(x * 20) + "x" + str(y * 20)
         master.master.geometry(size)
-
+        master.data = [0] * (x * y)
         super().__init__(master,
                          width=x * 20,
                          height=y * 20,
                          bg="white",
                          **kwargs)
+        self.master = master
+        # this parameter is for checking grid.size
         self.x = x
         self.y = y
         self.generate_grid(x, y, 20)
@@ -37,8 +39,14 @@ class my_canvas(tk.Canvas):
         y //= 20
         if x >= self.x or y >= self.y:
             return
+
+        array_location = x * self.y + y
+
         if input == 0:
             color = "blue"
+            self.master.data[array_location] = 1
         else:
             color = "white"
+            self.master.data[array_location] = 0
+        print(self.master.data)
         self.create_rectangle(x * 20, y * 20, (x + 1) * 20, (y + 1) * 20, fill=color)

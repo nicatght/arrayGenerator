@@ -1,5 +1,8 @@
 import tkinter as tk
+from tkinter import filedialog
 from my_canvas import my_canvas
+
+import json
 
 
 class menu(tk.Menu):
@@ -28,8 +31,18 @@ class menu(tk.Menu):
         pass
 
     def save_file(self):
-        # TO DO: implement save file functionality
-        pass
+        file_path = filedialog.asksaveasfilename(
+            title="Save file",
+            initialdir="/",
+            filetypes=(("JSON files", "*.json"),)
+        )
+
+        file_path += ".json"
+        print(file_path)
+
+        print(self.frame.data)
+        with open(file_path, 'w') as f:
+            json.dump(self.frame.data, f)
 
     def size(self):
         # Create a new window to display grid size information

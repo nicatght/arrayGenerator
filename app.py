@@ -12,6 +12,8 @@ class App(tk.Frame):
         self.menu = menu(self)
         self.master.config(menu=self.menu)
 
+        self.data: list = []
+
         # initialized value (can be change later on)
         self.grid_x = 48
         self.grid_y = 26
