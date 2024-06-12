@@ -38,11 +38,14 @@ class menu(tk.Menu):
         )
 
         file_path += ".json"
-        print(file_path)
 
-        print(self.frame.data)
+        stored_data = {
+            "row": self.frame.grid_y,
+            "columns": self.frame.grid_x,
+            "data": self.frame.data
+        }
         with open(file_path, 'w') as f:
-            json.dump(self.frame.data, f)
+            json.dump(stored_data, f)
 
     def size(self):
         # Create a new window to display grid size information

@@ -12,10 +12,11 @@ class my_canvas(tk.Canvas):
                          height=y * 20,
                          bg="white",
                          **kwargs)
-        self.master = master
-        # this parameter is for checking grid.size
-        self.x = x
-        self.y = y
+
+        self.master = master  # master is app
+        self.master.grid_x = x
+        self.master.grid_y = y
+
         self.generate_grid(x, y, 20)
 
         # Bind click and hold events to canvas
@@ -37,10 +38,10 @@ class my_canvas(tk.Canvas):
         x, y = event.x, event.y
         x //= 20
         y //= 20
-        if x >= self.x or y >= self.y:
+        if x >= self.master.grid_x or y >= self.master.grid_y:
             return
 
-        array_location = x * self.y + y
+        array_location = x * self.master.grid_y + y
 
         if input == 0:
             color = "blue"
@@ -48,5 +49,5 @@ class my_canvas(tk.Canvas):
         else:
             color = "white"
             self.master.data[array_location] = 0
-        print(self.master.data)
+
         self.create_rectangle(x * 20, y * 20, (x + 1) * 20, (y + 1) * 20, fill=color)
