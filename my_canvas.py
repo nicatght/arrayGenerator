@@ -28,6 +28,21 @@ class my_canvas(tk.Canvas):
 
         self.pack(padx=0, pady=0)
 
+    def update(self) -> None:
+        """
+        This function force update the canvas according to app's data
+        :return: None
+        """
+        local_data = self.master.data
+        print(local_data)
+        for y in range(self.master.grid_y):
+            for x in range(self.master.grid_x):
+                if local_data[x * y + x] == 1:
+                    color = "blue"
+                else:
+                    color = "white"
+                self.create_rectangle(x * 20, y * 20, (x + 1) * 20, (y + 1) * 20, fill=color)
+
     def generate_grid(self, x, y, pad):
         for i in range(0, x * pad, pad):
             self.create_line(i, 0, i, y * pad, fill="black")

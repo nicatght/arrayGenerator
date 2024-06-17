@@ -20,3 +20,6 @@ class App(tk.Frame):
         self.grid_pad = 20
 
         self.canvas = my_canvas(self, self.grid_x, self.grid_y)
+
+    def __str__(self):
+        return f"<APP: \n\t{self.grid_x=}\n\t{self.grid_y=}\n\t{self.data}\n>"
