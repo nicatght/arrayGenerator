@@ -37,7 +37,7 @@ class my_canvas(tk.Canvas):
         print(local_data)
         for y in range(self.master.grid_y):
             for x in range(self.master.grid_x):
-                if local_data[x * y + x] == 1:
+                if local_data[self.master.grid_x * y + x] == 1:
                     color = "blue"
                 else:
                     color = "white"
