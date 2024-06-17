@@ -56,7 +56,7 @@ class my_canvas(tk.Canvas):
         if x >= self.master.grid_x or y >= self.master.grid_y:
             return
 
-        array_location = x * self.master.grid_y + y
+        array_location = y * self.master.grid_x + x
 
         if input == 0:
             color = "blue"
